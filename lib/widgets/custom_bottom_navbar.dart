@@ -17,7 +17,7 @@ class CustomBottomNavBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 36),
+            padding: const EdgeInsets.symmetric(horizontal: 36),
             child: IconButton(
               icon: const Icon(
                 Icons.home,
@@ -37,7 +37,7 @@ class CustomBottomNavBar extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 36),
+            padding: const EdgeInsets.symmetric(horizontal: 36),
             child: IconButton(
               icon: const Icon(
                 Icons.school,
@@ -57,7 +57,7 @@ class CustomBottomNavBar extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 36),
+            padding: const EdgeInsets.symmetric(horizontal: 36),
             child: IconButton(
               icon: const Icon(
                 Icons.person,

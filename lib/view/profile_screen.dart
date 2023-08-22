@@ -1,5 +1,8 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:test_dataon/common/routes.dart';
+import 'package:test_dataon/view_models/user_view_model.dart';
 import 'package:test_dataon/widgets/custom_bottom_navbar.dart';
 import 'package:test_dataon/widgets/custom_button.dart';
 
@@ -9,6 +12,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    var viewModel = Provider.of<UserViewModel>(context);
     return Scaffold(
       bottomNavigationBar: const CustomBottomNavBar(),
       body: Column(
@@ -23,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
                     margin: const EdgeInsets.all(15),
                     width: 175,
                     height: 175,
-                    child: Image.asset('')),
+                    child: Image.asset(viewModel.user?.photo ?? '')),
               ),
               const Text(
                 '',
@@ -45,18 +49,18 @@ class ProfileScreen extends StatelessWidget {
                     Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24)),
-                      child: const ListTile(
-                        title: Text(
-                          'NIP',
+                      child: ListTile(
+                        title: const Text(
+                          'Nama',
                           style: TextStyle(fontSize: 12),
                         ),
                         horizontalTitleGap: 25,
                         subtitle: Padding(
-                          padding: EdgeInsets.only(top: 6.0),
+                          padding: const EdgeInsets.only(top: 6.0),
                           child: Text(
-                            '',
-                            style:
-                                TextStyle(fontSize: 18, color: Colors.black87),
+                            viewModel.user?.fullName ?? '',
+                            style: const TextStyle(
+                                fontSize: 18, color: Colors.black87),
                           ),
                         ),
                       ),
@@ -64,18 +68,18 @@ class ProfileScreen extends StatelessWidget {
                     Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24)),
-                      child: const ListTile(
-                        title: Text(
-                          'Email',
+                      child: ListTile(
+                        title: const Text(
+                          'UserName',
                           style: TextStyle(fontSize: 12),
                         ),
                         horizontalTitleGap: 25,
                         subtitle: Padding(
-                          padding: EdgeInsets.only(top: 6.0),
+                          padding: const EdgeInsets.only(top: 6.0),
                           child: Text(
-                            '',
-                            style:
-                                TextStyle(fontSize: 18, color: Colors.black87),
+                            viewModel.user?.userName ?? '',
+                            style: const TextStyle(
+                                fontSize: 18, color: Colors.black87),
                           ),
                         ),
                       ),
@@ -83,18 +87,18 @@ class ProfileScreen extends StatelessWidget {
                     Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24)),
-                      child: const ListTile(
-                        title: Text(
-                          'Unit',
+                      child: ListTile(
+                        title: const Text(
+                          'Password',
                           style: TextStyle(fontSize: 12),
                         ),
                         horizontalTitleGap: 25,
                         subtitle: Padding(
-                          padding: EdgeInsets.only(top: 6.0),
+                          padding: const EdgeInsets.only(top: 6.0),
                           child: Text(
-                            '',
-                            style:
-                                TextStyle(fontSize: 18, color: Colors.black87),
+                            viewModel.user?.password ?? '',
+                            style: const TextStyle(
+                                fontSize: 18, color: Colors.black87),
                           ),
                         ),
                       ),
@@ -106,10 +110,9 @@ class ProfileScreen extends StatelessWidget {
                         size: size,
                         color: Colors.red,
                         text: 'Sign Out',
-                        onPressed: () {})
-                    //  () => Navigator.pushReplacementNamed(
-                    //         context, AppRoutes.login)
-                    //     .then((value) => viewModel.logOut())),
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context, Routes.login);
+                        })
                   ],
                 ),
               ),

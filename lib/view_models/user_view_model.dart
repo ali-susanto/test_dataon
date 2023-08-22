@@ -20,6 +20,7 @@ class UserViewModel extends ChangeNotifier {
 
   Future<void> login(String userName, String password) async {
     var res = await UserService.instance.login(userName, password);
+    user = res.data;
     valid = res.success!;
     notifyListeners();
   }
