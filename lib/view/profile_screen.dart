@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
                     margin: const EdgeInsets.all(15),
                     width: 175,
                     height: 175,
-                    child: Image.asset(viewModel.user?.photo ?? '')),
+                    child: Image.file(File(viewModel.user?.photo ?? ''))),
               ),
               const Text(
                 '',

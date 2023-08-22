@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_dataon/view/profile_screen.dart';
@@ -39,8 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ListTile(
                   contentPadding:
                       const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                  leading: const CircleAvatar(
-                    child: Icon(Icons.person),
+                  leading: CircleAvatar(
+                    child: Image.file(File(vieModel.user?.photo ?? '')),
                   ),
                   title: Text(
                     "Selamat Datang",
@@ -55,7 +57,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                ))
+                )),
+            const SizedBox(
+              height: 200,
+            ),
+            const Icon(
+              Icons.school,
+              size: 300,
+            )
           ],
         ),
       )),
