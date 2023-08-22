@@ -18,11 +18,13 @@ class _LoginScreenState extends State<LoginScreen> {
   final _userName = TextEditingController();
   final _pass = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool isVisible = true;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var viewModel = Provider.of<UserViewModel>(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
@@ -52,7 +54,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   headingText: 'Password',
                   hintText: 'masukkan password',
                   controller: _pass,
-                  obsecureText: true,
+                  obsecureText: isVisible,
+                  suffixIcon: IconButton(
+                      icon: isVisible
+                          ? const Icon(Icons.visibility_off)
+                          : const Icon(Icons.visibility),
+                      onPressed: () {
+                        setState(() {
+                          isVisible = !isVisible;
+                        });
+                      }),
                 ),
                 const SizedBox(
                   height: 24,
@@ -90,7 +101,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           Navigator.pushNamed(context, Routes.register);
                         },
-                        child: const Text('Register',))
+                        child: const Text(
+                          'Register',
+                        ))
                   ],
                 )
               ],

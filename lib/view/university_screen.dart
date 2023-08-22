@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:test_dataon/view/detail_univeristy_screen.dart';
 import 'package:test_dataon/view_models/university_view_model.dart';
 import 'package:test_dataon/widgets/custom_bottom_navbar.dart';
 
@@ -37,7 +38,7 @@ class _UniversityScreenState extends State<UniversityScreen> {
               child: Consumer<UniversityViewModel>(
                 builder: (context, value, child) {
                   if (value.loading) {
-                    return const CircularProgressIndicator();
+                    return const Center(child: CircularProgressIndicator());
                   }
                   if (value.universities.isEmpty) {
                     return const Center(child: Text('Gagal memuat Data'));
@@ -45,27 +46,38 @@ class _UniversityScreenState extends State<UniversityScreen> {
                   return ListView.builder(
                       itemCount: viewModel.universities.length,
                       itemBuilder: (context, index) {
-                        return Container(
-                          margin: const EdgeInsets.only(bottom: 10),
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: Colors.black87)),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                viewModel.universities[index].name ?? '',
-                                style: const TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                viewModel.universities[index].country ?? '',
-                                style: const TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.w400),
-                              )
-                            ],
+                        return InkWell(
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailUniversityScreen(
+                                        universityModel:
+                                            viewModel.universities[index],
+                                      ))),
+                          child: Container(
+                            margin: const EdgeInsets.only(bottom: 10),
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(color: Colors.black87)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  viewModel.universities[index].name ?? '',
+                                  style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  viewModel.universities[index].country ?? '',
+                                  style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400),
+                                )
+                              ],
+                            ),
                           ),
                         );
                       });

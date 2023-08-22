@@ -40,10 +40,13 @@ class CustomTextField extends StatelessWidget {
           TextFormField(
             maxLines: maxLines,
             controller: controller,
-            textInputAction: textInputAction?? TextInputAction.none,
-            keyboardType: textInputType??TextInputType.text,
+            textInputAction: textInputAction ?? TextInputAction.none,
+            keyboardType: textInputType ?? TextInputType.text,
             obscureText: obsecureText,
-            validator: (value) {
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Data tidak boleh kosong';
+              }
               return null;
             },
             decoration: InputDecoration(
