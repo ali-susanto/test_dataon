@@ -17,12 +17,13 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<UserViewModel>(context,listen: false);
+      Provider.of<UserViewModel>(context, listen: false);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    var vieModel = Provider.of<UserViewModel>(context);
     return Scaffold(
       bottomNavigationBar: const CustomBottomNavBar(),
       body: SafeArea(
@@ -48,9 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.grey[400],
                     ),
                   ),
-                  subtitle: const Text(
-                    '',
-                    style: TextStyle(
+                  subtitle: Text(
+                    vieModel.user?.fullName ?? '',
+                    style: const TextStyle(
                       fontWeight: FontWeight.w500,
                     ),
                   ),

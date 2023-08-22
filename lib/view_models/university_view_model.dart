@@ -4,11 +4,12 @@ import 'package:test_dataon/service/remote/university_service.dart';
 
 class UniversityViewModel extends ChangeNotifier {
   List<UniversityModel> universities = [];
+  bool loading = false;
   Future<void> getUniversity() async {
+    loading = true;
     var response = await UniversityService().getUniversity();
-    if (response.statusCode == 200) {
-      var dataResponse = UniversityModel.fromJson(response.data);
-      debugPrint(dataResponse.toString());
-    }
+    loading = false;
+    universities = response;
+    notifyListeners();
   }
 }
